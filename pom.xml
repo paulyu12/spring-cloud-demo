@@ -12,11 +12,10 @@
         <module>cloud-api-commons</module>
         <module>cloud-provide-payment</module>
         <module>cloud-consumer-order</module>
+        <module>cloud-eureka-server</module>
     </modules>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -25,6 +24,7 @@
         <junit.version>4.1.2</junit.version>
         <lombok.version>1.16.10</lombok.version>
         <log4j.vsrsion>1.2.17</log4j.vsrsion>
+        <eureka.version>2.2.6.RELEASE</eureka.version>
     </properties>
 
     <dependencyManagement>
@@ -34,7 +34,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Greenwich.SR1</version>
+                <version>Hoxton.SR1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
