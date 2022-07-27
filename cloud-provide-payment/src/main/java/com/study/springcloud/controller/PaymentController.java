@@ -12,6 +12,7 @@ import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 /*
  * 提供restful服务  供其他服务调用
@@ -54,8 +55,8 @@ public class PaymentController {
             return new CommonResult(444,"插入数据库失败",null);
         }
     }
-    @GetMapping("/payment/get/{id}")
 
+    @GetMapping("/payment/get/{id}")
     public CommonResult queryById(@PathVariable("id") Long id){
         Payment payment = paymentService.queryById(id);
         log.info("***************查询成功*********"+payment);
@@ -64,6 +65,13 @@ public class PaymentController {
         }else{
             return new CommonResult(444,"查询失败",null);
         }
+    }
+
+    //模拟业务接口延时3秒
+    @GetMapping("/payment/feign/timeout")
+    public String PaymentFeignTimeOut() throws InterruptedException {
+        TimeUnit.SECONDS.sleep(3);
+        return port;
     }
 
 }

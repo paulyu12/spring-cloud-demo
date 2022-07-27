@@ -22,4 +22,9 @@ public class OrderFeignController {
         return result;
     }
 
+    @GetMapping("/consumer/feign/timeout")
+    public String PaymentFeignTimeOut() throws InterruptedException{
+        return paymentService.PaymentFeignTimeOut();
+    }
+
 }
