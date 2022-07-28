@@ -14,6 +14,8 @@
         <module>cloud-consumer-order</module>
         <module>cloud-eureka-server</module>
         <module>cloud-feign-consumer-order</module>
+        <module>cloud-provider-hystrix-payment8001</module>
+        <module>cloud-consumer-feign-hystrix-order</module>
     </modules>
 
     <properties>
