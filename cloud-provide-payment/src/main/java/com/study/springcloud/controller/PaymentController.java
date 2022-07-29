@@ -67,6 +67,16 @@ public class PaymentController {
         }
     }
 
+    @GetMapping("/payment/lb")
+    public CommonResult queryLoadBalance(){
+        String port = paymentService.getPort();
+        if(port != null){
+            return new CommonResult(200,port);
+        }else{
+            return new CommonResult(444,"Port is null");
+        }
+    }
+
     //模拟业务接口延时3秒
     @GetMapping("/payment/feign/timeout")
     public String PaymentFeignTimeOut() throws InterruptedException {

@@ -7,4 +7,6 @@ public interface PaymentService {
     int create(Payment payment);
 
     Payment queryById(@Param("id")long id);
+
+    String getPort();
 }
