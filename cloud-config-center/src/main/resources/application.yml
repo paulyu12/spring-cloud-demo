@@ -13,7 +13,6 @@ spring:
           uri: https://github.com/paulyu12/spring-cloud-demo #github仓库上面的git地址
           ##搜索目录
           search-paths: config-repo
-          default-label: main
 
 #服务注册到eureka地址
 eureka:
