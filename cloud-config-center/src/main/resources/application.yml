@@ -4,6 +4,11 @@ server:
 spring:
   application:
     name: cloud-config-center #注册进Eureka服务器的服务名称
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
   cloud:
     config:
       # 下述配置生成的有效 URL 是：http://localhost:3344/config/dev
@@ -24,3 +29,10 @@ eureka:
     instance-id: config3344
     prefer-ip-address: true
     ip-address: ${IP_ADDRESS:127.0.0.1}
+
+# 暴露总线刷新配置的端点
+management:
+  endpoints:
+    web:
+      exposure:
+        include: 'bus-refresh'

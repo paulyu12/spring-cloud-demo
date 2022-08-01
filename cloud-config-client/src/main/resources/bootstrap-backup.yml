@@ -1,9 +1,9 @@
 server:
-  port: 3355
+  port: 3356
 
 spring:
   application:
-    name: config-client
+    name: config-client-3356
   # RabbitMQ相关配置
   rabbitmq:
     host: localhost
@@ -26,7 +26,7 @@ eureka:
       defaultZone: http://127.0.0.1:7001/eureka
 
   instance:
-    instance-id: config3355
+    instance-id: config3356
     prefer-ip-address: true
     ip-address: ${IP_ADDRESS:127.0.0.1}
 
