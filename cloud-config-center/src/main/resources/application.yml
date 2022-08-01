@@ -9,11 +9,10 @@ spring:
       # 下述配置生成的有效 URL 是：http://127.0.0.1:3344/main/springcloud-config.yml
       server:
         git:
-#            skip-ssl-validation: true
-          uri: https://github.com/paulyu12/springcloud-config/ #github仓库上面的git地址
+          skip-ssl-validation: true
+          uri: https://github.com/paulyu12/spring-cloud-demo #github仓库上面的git地址
           ##搜索目录
           search-paths: config-repo
-          skip-ssl-validation: true
 #服务注册到eureka地址
 eureka:
   client:
