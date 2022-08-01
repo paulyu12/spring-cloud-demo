@@ -3,14 +3,17 @@ server:
 
 spring:
   application:
-    name: config-client
+    name: config
   cloud:
     #Config客户端配置
     config:
-      label: main #分支名称
-      name: config #配置文件名称
+#      discovery:
+#        enabled: true
+#        service-id: cloud-config-center #config server的注册application name
+      label: master #分支名称
+#      name: config #配置文件名称
       profile: dev #读取后缀名称   上述3个综合：master分支上config-dev.yml的配置文件被读取http://localhost:3344/main/config-dev.yml
-      uri: http://localhost:3344 #配置中心地址
+      uri: http://127.0.0.1:3344 #配置中心地址
 
 #服务注册到eureka地址
 eureka:
