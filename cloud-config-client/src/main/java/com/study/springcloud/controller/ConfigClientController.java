@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ConfigClientController {
-    @Value("${config.info}")
+    @Value("${neo.hello}")
     private String configInfo;
 
     @GetMapping("/config")
