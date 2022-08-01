@@ -6,13 +6,15 @@ spring:
     name: cloud-config-center #注册进Eureka服务器的服务名称
   cloud:
     config:
-      # 下述配置生成的有效 URL 是：http://127.0.0.1:3344/main/springcloud-config.yml
+      # 下述配置生成的有效 URL 是：http://localhost:3344/config/dev
       server:
         git:
           skip-ssl-validation: true
           uri: https://github.com/paulyu12/spring-cloud-demo #github仓库上面的git地址
           ##搜索目录
           search-paths: config-repo
+          default-label: main
+
 #服务注册到eureka地址
 eureka:
   client:
