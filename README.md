@@ -1,6 +1,7 @@
 # 参考教程
 - https://blog.csdn.net/weixin_38007185/article/details/108119724
 - https://github.com/ityouknow/spring-cloud-examples
+- https://blog.51cto.com/u_14582976/2826683
 
 # spring-cloud-config
 - 配置中心访问
