@@ -16,4 +16,7 @@ public interface DepartmentMapper {
     // 通过id获得部门
     Department getDepartment(Integer id);
 
+    // 新增一个部门
+    int addDepartment(Department dept);
+
 }

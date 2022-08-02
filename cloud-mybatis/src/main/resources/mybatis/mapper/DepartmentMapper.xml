@@ -13,4 +13,9 @@
         select * from department where id = #{id};
     </select>
 
+<!--    <insert id="addDepartment" parameterType="Department" useGeneratedKeys="true" keyProperty="id"  keyColumn="id">-->
+    <insert id="addDepartment" parameterType="Department" useGeneratedKeys="true" keyProperty="id">
+        insert into department (id, departmentName) values (#{id, jdbcType = INTEGER}, #{departmentName, jdbcType = VARCHAR});
+    </insert>
+
 </mapper>
