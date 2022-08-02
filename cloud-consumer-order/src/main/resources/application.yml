@@ -3,6 +3,13 @@ server:
 spring:
   application:
     name: microservice-order  #服务名
+  # Sleuth 链路监控配置
+  zipkin:
+    base-url: http://localhost:9411
+  sleuth:
+    sampler:
+      # 采样率值介于0到1之间，1表示全部采集
+      probability: 1
 #eureka配置
 eureka:
   client:
@@ -12,7 +19,7 @@ eureka:
     fetch-registry: true
     service-url:
       #集群配置
-      defaultZone: http://localhost:7001/eureka,http://localhost:7002/eureka
+      defaultZone: http://localhost:7001/eureka  #,http://localhost:7002/eureka
 
   instance:
     instance-id: order80
