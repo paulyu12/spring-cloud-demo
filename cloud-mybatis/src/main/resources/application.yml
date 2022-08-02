@@ -35,3 +35,6 @@ spring:
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
 
+mybatis:
+  type-aliases-package: com.study.springcloud.pojo
+  mapper-locations: classpath:mybatis/mapper/*.xml

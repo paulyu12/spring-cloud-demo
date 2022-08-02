@@ -34,7 +34,7 @@ public class DruidConfig {
         HashMap<String, String > initParameters = new HashMap<>();
         initParameters.put("loginUsername","admin");
         initParameters.put("loginPassword","123456");
-        initParameters.put("allow","localhost"); // 允许谁可以访问
+        initParameters.put("allow","127.0.0.1"); // 允许谁可以访问
         initParameters.put("sowhat","192.168.1.1");
         bean.setInitParameters(initParameters);// 设置初始化参数
         return bean;
