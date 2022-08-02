@@ -20,7 +20,6 @@
         <module>cloud-gateway-gateway9527</module>
         <module>cloud-config-center</module>
         <module>cloud-config-client</module>
-        <module>cloud-config-client-3366</module>
     </modules>
 
     <properties>
