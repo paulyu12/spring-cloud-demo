@@ -2,6 +2,8 @@
 - https://blog.csdn.net/weixin_38007185/article/details/108119724
 - https://github.com/ityouknow/spring-cloud-examples
 - https://blog.51cto.com/u_14582976/2826683
+- https://blog.csdn.net/lydms/article/details/105224210
+- https://blog.csdn.net/Mrqiang9001/article/details/121468447
 
 # spring-cloud-config
 - 配置中心访问
