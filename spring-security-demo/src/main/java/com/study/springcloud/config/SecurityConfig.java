@@ -1,7 +1,9 @@
 package com.study.springcloud.config;
 
+import com.study.springcloud.handler.MyAccessDeniedHandler;
 import com.study.springcloud.handler.MyAuthenticationFailureHandler;
 import com.study.springcloud.handler.MyAuthenticationSuccessHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +13,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    MyAccessDeniedHandler myAccessDeniedHandler;
 
     @Bean
     public PasswordEncoder getPw() {
@@ -31,18 +36,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 登录成功后跳转的页面, POST 请求
 //                .successForwardUrl("/toMain")
                 // 自定义 success handler
-                .successHandler(new MyAuthenticationSuccessHandler("https://www.baidu.com"))
+                .successHandler(new MyAuthenticationSuccessHandler("/main.html"))
                 // 登录失败页面跳转
-//                .failureForwardUrl("/toError");
-                .failureHandler(new MyAuthenticationFailureHandler("https://www.sina.com.cn"));
+                .failureForwardUrl("/toError");
+                // 自定义 failure handler
+//                .failureHandler(new MyAuthenticationFailureHandler("https://www.sina.com.cn"));
 
         // 授权
         http.authorizeRequests()
                 // 放行，不需要认证的页面
                 .antMatchers("/login.html").permitAll()
                 .antMatchers("/error.html").permitAll()
+
+                // 基于权威的权限控制
+//                .antMatchers("/main1.html").hasAuthority("admin")
+//                .antMatchers("/main1.html").hasAnyAuthority("admin", "admiN")
+
+                // 基于角色的权限控制
+//                .antMatchers("/main1.html").hasRole("abc")
+//                .antMatchers("/main1.html").hasAnyRole("abc", "abC")
+
+                // 基于 IP 的权限控制
+                .antMatchers("/main1.html").hasIpAddress("127.0.0.1")
+
                 // 所有请求都需要授权才能访问，需要登录
                 .anyRequest().authenticated();
+
+        http.exceptionHandling()
+                .accessDeniedHandler(myAccessDeniedHandler);
 
         // 暂时关闭 CSRF 防护
         http.csrf().disable();
