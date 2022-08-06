@@ -25,6 +25,7 @@
         <module>cloud-stream-rabbitmq-provider8801</module>
         <module>cloud-mybatis</module>
         <module>cloud-redis-template</module>
+        <module>spring-security-demo</module>
     </modules>
 
     <properties>
@@ -37,6 +38,7 @@
         <lombok.version>1.16.10</lombok.version>
         <log4j.vsrsion>1.2.17</log4j.vsrsion>
         <eureka.version>2.2.6.RELEASE</eureka.version>
+        <spring-boot.version>2.3.7.RELEASE</spring-boot.version>
     </properties>
 
     <dependencyManagement>
@@ -54,7 +56,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
-                <version>2.3.7.RELEASE</version>
+                <version>${spring-boot.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
