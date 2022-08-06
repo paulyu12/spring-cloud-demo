@@ -34,9 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 必须和表单提交的接口（位于 login.html 中）一样，回去执行自定义登录逻辑
                 .loginProcessingUrl("/login")
                 // 登录成功后跳转的页面, POST 请求
-//                .successForwardUrl("/toMain")
+                .successForwardUrl("/toMain")
                 // 自定义 success handler
-                .successHandler(new MyAuthenticationSuccessHandler("/main.html"))
+//                .successHandler(new MyAuthenticationSuccessHandler("/main.html"))
                 // 登录失败页面跳转
                 .failureForwardUrl("/toError");
                 // 自定义 failure handler
@@ -60,13 +60,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/main1.html").hasIpAddress("127.0.0.1")
 
                 // access 表达式
-                .antMatchers("/main1.html").access("hasIpAddress('127.0.0.1')")
+//                .antMatchers("/main1.html").access("hasIpAddress('127.0.0.1')")
 
                 // 所有请求都需要授权才能访问，需要登录
-//                .anyRequest().authenticated();
+                .anyRequest().authenticated();
 
                 // 自定义 access 方法的权限控制
-                .anyRequest().access("@myServiceImpl.hasPermission(request, authentication)");
+//                .anyRequest().access("@myServiceImpl.hasPermission(request, authentication)");
 
         http.exceptionHandling()
                 .accessDeniedHandler(myAccessDeniedHandler);
