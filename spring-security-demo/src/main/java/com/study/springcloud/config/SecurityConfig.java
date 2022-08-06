@@ -3,19 +3,34 @@ package com.study.springcloud.config;
 import com.study.springcloud.handler.MyAccessDeniedHandler;
 import com.study.springcloud.handler.MyAuthenticationFailureHandler;
 import com.study.springcloud.handler.MyAuthenticationSuccessHandler;
+import com.study.springcloud.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     MyAccessDeniedHandler myAccessDeniedHandler;
+
+    @Autowired
+    private UserDetailsServiceImpl userDetailsService;
+
+    @Autowired
+    private PersistentTokenRepository persistentTokenRepository;
+
+    @Autowired
+    private DataSource dataSource;
 
     @Bean
     public PasswordEncoder getPw() {
@@ -71,7 +86,28 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.exceptionHandling()
                 .accessDeniedHandler(myAccessDeniedHandler);
 
+        http.rememberMe()
+//                .rememberMeParameter()      // 类似 passwordParameter, usernameParameter
+                .tokenValiditySeconds(60)     // 超时时间，秒
+                // 设置数据源：token 的存储仓库
+                .tokenRepository(persistentTokenRepository)
+                // 自定义登录逻辑
+                .userDetailsService(userDetailsService);
+
         // 暂时关闭 CSRF 防护
         http.csrf().disable();
+    }
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+
+        // 设置数据源
+        jdbcTokenRepository.setDataSource(dataSource);
+        // 自动建表：第一次启动时开启，第二次启动时注释掉
+        jdbcTokenRepository.setCreateTableOnStartup(true);
+
+        return jdbcTokenRepository;
     }
 }

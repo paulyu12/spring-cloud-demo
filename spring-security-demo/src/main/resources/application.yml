@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: spring-security-demo
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    name: defaultDataSource
+    url: jdbc:mysql://localhost:3307/spring?serverTimezone=UTC&useSSL=false
+    username: root
+    password: 123456
