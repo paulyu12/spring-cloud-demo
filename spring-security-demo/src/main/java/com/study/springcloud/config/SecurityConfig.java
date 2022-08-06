@@ -24,12 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 必须和表单提交的接口（位于 login.html 中）一样，回去执行自定义登录逻辑
                 .loginProcessingUrl("/login")
                 // 登录成功后跳转的页面, POST 请求
-                .successForwardUrl("/toMain");
+                .successForwardUrl("/toMain")
+                // 登录失败页面跳转
+                .failureForwardUrl("/toError");
 
         // 授权
         http.authorizeRequests()
                 // 放行，不需要认证的页面
                 .antMatchers("/login.html").permitAll()
+                .antMatchers("/error.html").permitAll()
                 // 所有请求都需要授权才能访问，需要登录
                 .anyRequest().authenticated();
 

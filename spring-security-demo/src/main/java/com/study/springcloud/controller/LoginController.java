@@ -25,4 +25,13 @@ public class LoginController {
         return "redirect:main.html";
     }
 
+    /**
+     * 登录
+     * @return
+     */
+    @RequestMapping("/toError")
+    public String toError() {
+        return "redirect:error.html";
+    }
+
 }
