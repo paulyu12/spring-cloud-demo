@@ -58,12 +58,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 // 基于 IP 的权限控制
 //                .antMatchers("/main1.html").hasIpAddress("127.0.0.1")
-                
+
                 // access 表达式
                 .antMatchers("/main1.html").access("hasIpAddress('127.0.0.1')")
 
                 // 所有请求都需要授权才能访问，需要登录
-                .anyRequest().authenticated();
+//                .anyRequest().authenticated();
+
+                // 自定义 access 方法的权限控制
+                .anyRequest().access("@myServiceImpl.hasPermission(request, authentication)");
 
         http.exceptionHandling()
                 .accessDeniedHandler(myAccessDeniedHandler);
