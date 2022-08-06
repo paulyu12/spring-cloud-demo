@@ -20,7 +20,7 @@ spring:
 #mybatis:配置
 mybatis:
   mapperLocations: classpath:dao/*.xml
-  type-aliases-package: com.buba.springcloud.pojo    # 所有pojo别名类所在包
+  type-aliases-package: com.study.springcloud.pojo    # 所有pojo别名类所在包
 #eureka配置
 eureka:
   client:

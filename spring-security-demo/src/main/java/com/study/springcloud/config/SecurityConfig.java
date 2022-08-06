@@ -26,11 +26,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsServiceImpl userDetailsService;
 
-    @Autowired
-    private PersistentTokenRepository persistentTokenRepository;
-
+    // dataSource 的声明一定要放在 persistentTokenRepository 的声明之前，否则 dataSource 在使用时还未注入 ！！！
     @Autowired
     private DataSource dataSource;
+
+    @Autowired
+    private PersistentTokenRepository persistentTokenRepository;
 
     @Bean
     public PasswordEncoder getPw() {
@@ -106,7 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         // 设置数据源
         jdbcTokenRepository.setDataSource(dataSource);
         // 自动建表：第一次启动时开启，第二次启动时注释掉
-        jdbcTokenRepository.setCreateTableOnStartup(true);
+//        jdbcTokenRepository.setCreateTableOnStartup(true);
 
         return jdbcTokenRepository;
     }
