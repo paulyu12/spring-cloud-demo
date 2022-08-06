@@ -18,10 +18,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        System.out.println("Run custom login logic.");
 
         // 根据用户名 s 到数据库查询用户信息，如果不存在则抛出异常
         if (!"admin".equals(s)) {
-            throw new UsernameNotFoundException("用户名不存在");
+            throw new UsernameNotFoundException("User not exist.");
         }
 
         // 比较密码，如果匹配成功返回 UserDetails
