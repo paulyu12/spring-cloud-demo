@@ -23,6 +23,20 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-security</artifactId>
+            <exclusions>
+                <!--Spring-data-redis 2.0版本中set(String,String)方法被弃用了. 旧版本 redis操作有问题-->
+                <!--然后添加2.3.3.RELEASE新版本的spring-security-oauth2依赖.-->
+                <!--参考：https://zhuanlan.zhihu.com/p/110818460-->
+                <exclusion>
+                    <artifactId>spring-security-oauth2</artifactId>
+                    <groupId>org.springframework.security.oauth</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security.oauth</groupId>
+            <artifactId>spring-security-oauth2</artifactId>
+            <version>2.3.3.RELEASE</version>
         </dependency>
 
 <!--        下面几个依赖都是为了配合 oauth2 依赖，不加的话 @EnableAuthorizationServer, @EnableResourceServer 注解无法使用-->
@@ -68,6 +82,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+<!--        redis 和 redis 连接池的依赖-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>
