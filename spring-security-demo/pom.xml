@@ -56,6 +56,18 @@
             <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
+
+<!--        导入 thymeleaf 依赖-->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

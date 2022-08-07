@@ -4,6 +4,7 @@
 - https://blog.51cto.com/u_14582976/2826683
 - https://blog.csdn.net/lydms/article/details/105224210
 - https://blog.csdn.net/Mrqiang9001/article/details/121468447
+- https://www.bilibili.com/video/BV1Cz4y1k7rd?p=3
 
 # spring-cloud-config
 - 配置中心访问
