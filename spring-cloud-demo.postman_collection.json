@@ -120,27 +120,22 @@
 					"urlencoded": [
 						{
 							"key": "grant_type",
-							"value": "authorization_code",
-							"type": "text"
-						},
-						{
-							"key": "code",
-							"value": "29IblO",
-							"type": "text"
-						},
-						{
-							"key": "client_id",
-							"value": "client-id-1",
-							"type": "text"
-						},
-						{
-							"key": "redirect_uri",
-							"value": "https://www.baidu.com",
+							"value": "password",
 							"type": "text"
 						},
 						{
 							"key": "scope",
 							"value": "all",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin123",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456",
 							"type": "text"
 						}
 					]
@@ -164,10 +159,71 @@
 			"response": []
 		},
 		{
+			"name": "JWT 解析 token",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbjEyMyIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2NTk5MzA1NjUsImF1dGhvcml0aWVzIjpbImFkbWluIl0sImp0aSI6IjliN2Q4MTc4LWVlZDEtNDhhZS1hMzg5LThmMGQ0MTM1ZjRmMSIsImNsaWVudF9pZCI6ImNsaWVudC1pZC0xIiwiZW5oYW5jZSI6ImVuaGFuY2VyIGluZm8ifQ.rAQzvoCQaHce4fiXcDA3v5Ioj1a4AelfOocZemLCNEc",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://127.0.0.1:18080/user/getJwt",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "18080",
+					"path": [
+						"user",
+						"getJwt"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "/user/getCurrentUser",
 			"request": {
-				"method": "GET",
-				"header": []
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "5f24ce26-b0b5-4934-8ab6-c2ea233ec655",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://127.0.0.1:18080/user/getCurrentUser",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "18080",
+					"path": [
+						"user",
+						"getCurrentUser"
+					]
+				}
 			},
 			"response": []
 		},
