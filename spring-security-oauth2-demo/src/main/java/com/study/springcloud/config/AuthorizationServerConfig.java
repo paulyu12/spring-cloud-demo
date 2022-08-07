@@ -11,6 +11,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenStore;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 
 @Configuration
 @EnableAuthorizationServer
@@ -25,9 +26,16 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     UserDetailsService userDetailsService;
 
+//    @Autowired
+//    @Qualifier("redisTokenStore")
+//    private TokenStore tokenStore;
+
     @Autowired
-    @Qualifier("redisTokenStore")
+    @Qualifier("jwtTokenStore")
     private TokenStore tokenStore;
+
+    @Autowired
+    private JwtAccessTokenConverter jwtAccessTokenConverter;
 
     // 密码模式配置
     @Override
@@ -36,7 +44,11 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .userDetailsService(userDetailsService)
 
                 // 使用 redis 保存用户 token
-                .tokenStore(tokenStore);
+//                .tokenStore(tokenStore);
+
+                // oauth2 默认的 access token 转成 jwt tokenStore
+                .tokenStore(tokenStore)
+                .accessTokenConverter(jwtAccessTokenConverter);
     }
 
     // 授权服务器配置

@@ -7,6 +7,6 @@ spring:
 
   # 用户 token 信息保存在 redis 中，不再保存在内存中
   # 使用密码模式对配置进行测试
-  redis:
-    host: 127.0.0.1
-    port: 6389
+#  redis:
+#    host: 127.0.0.1
+#    port: 6389
