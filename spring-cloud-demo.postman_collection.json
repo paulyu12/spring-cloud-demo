@@ -159,6 +159,59 @@
 			"response": []
 		},
 		{
+			"name": "jwt 刷新令牌",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "112233",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client-id-1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text"
+						},
+						{
+							"key": "refresh_token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbjEyMyIsInNjb3BlIjpbImFsbCJdLCJhdGkiOiI5NzM4ODQ5Ny0yYTkxLTRiMWItODEyZi02Zjc4Y2E3YWViZTUiLCJleHAiOjE2NTk5NzQzMTUsImF1dGhvcml0aWVzIjpbImFkbWluIl0sImp0aSI6ImEyMjIzMWY2LTYxNmMtNGFiMS1iZTAxLTA1NTA5ZTI4NWI1OCIsImNsaWVudF9pZCI6ImNsaWVudC1pZC0xIiwiZW5oYW5jZSI6ImVuaGFuY2VyIGluZm8ifQ.lKsdkDt-k_l2mKVJyoXgba-dvx_GtYSEuhBzwZFUDzA",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:18080/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "18080",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "JWT 解析 token",
 			"request": {
 				"auth": {
@@ -168,7 +221,7 @@
 				"header": [
 					{
 						"key": "Authorization",
-						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbjEyMyIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2NTk5MzA1NjUsImF1dGhvcml0aWVzIjpbImFkbWluIl0sImp0aSI6IjliN2Q4MTc4LWVlZDEtNDhhZS1hMzg5LThmMGQ0MTM1ZjRmMSIsImNsaWVudF9pZCI6ImNsaWVudC1pZC0xIiwiZW5oYW5jZSI6ImVuaGFuY2VyIGluZm8ifQ.rAQzvoCQaHce4fiXcDA3v5Ioj1a4AelfOocZemLCNEc",
+						"value": "bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiJhZG1pbjEyMyIsInNjb3BlIjpbImFsbCJdLCJleHAiOjE2NTk4ODgxMDksImF1dGhvcml0aWVzIjpbImFkbWluIl0sImp0aSI6Ijc3NjAxZDI3LWNjZGMtNGY0Mi05ZDc2LTcwNWJmMmNhNjc0ZSIsImNsaWVudF9pZCI6ImNsaWVudC1pZC0xIiwiZW5oYW5jZSI6ImVuaGFuY2VyIGluZm8ifQ.SUHNt6tTqlksySdo-Cau6lLfPsBXxP7tgII2RdaC4GI",
 						"type": "text"
 					}
 				],

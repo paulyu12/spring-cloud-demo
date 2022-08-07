@@ -93,7 +93,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                  * 授权类型
                  * authorization_code: 授权码模式
                  */
-                .authorizedGrantTypes("authorization_code", "password");
+                .authorizedGrantTypes("authorization_code", "password", "refresh_token")
+
+                // 设置令牌失效时间, 60s
+                .accessTokenValiditySeconds(60)
+
+                // 刷新令牌的失效时间, 1d
+                .refreshTokenValiditySeconds(86400);
 
     }
 }
