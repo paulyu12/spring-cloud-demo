@@ -18,23 +18,15 @@ public class JjwtApplicationTest {
      */
     @Test
     public void testJwt() {
-
-        // 当前时间
-        long date = System.currentTimeMillis();
-
-        // 失效时间
-        long exp = date + 60 * 1000;
-
         JwtBuilder jwtBuilder = Jwts.builder()
                 // 唯一 ID
                 .setId("888")
                 // 接受的用户 {“sub": "Rose" }
                 .setSubject("Rose")
                 // 签发时间 {”iat”: "xxxx-xx-xx"}
-                .setIssuedAt(new Date(date))
+                .setIssuedAt(new Date())
                 // 签名算法及密钥（盐）
-                .signWith(SignatureAlgorithm.HS256, "salt_secret_xxxx")
-                .setExpiration(new Date(exp));
+                .signWith(SignatureAlgorithm.HS256, "salt_secret_xxxx");
                 // jwt 包含的标准声明，包括： iss, sub, aud, exp, nbf, iat, jti 等
 
         String token = jwtBuilder.compact();
@@ -53,15 +45,23 @@ public class JjwtApplicationTest {
     @Test
     public void testJwtWithExpireTime() {
 
+        // 当前时间
+        long date = System.currentTimeMillis();
+
+        // 失效时间
+        long exp = date + 60 * 1000;
+
         JwtBuilder jwtBuilder = Jwts.builder()
                 // 唯一 ID
                 .setId("888")
                 // 接受的用户 {“sub": "Rose" }
                 .setSubject("Rose")
                 // 签发时间 {”iat”: "xxxx-xx-xx"}
-                .setIssuedAt(new Date())
+                .setIssuedAt(new Date(date))
                 // 签名算法及密钥（盐）
-                .signWith(SignatureAlgorithm.HS256, "salt_secret_xxxx");
+                .signWith(SignatureAlgorithm.HS256, "salt_secret_xxxx")
+                // 设置 token 失效时间
+                .setExpiration(new Date(exp));
         // jwt 包含的标准声明，包括： iss, sub, aud, exp, nbf, iat, jti 等
 
         String token = jwtBuilder.compact();
