@@ -27,6 +27,7 @@
         <module>cloud-redis-template</module>
         <module>spring-security-demo</module>
         <module>spring-security-oauth2-demo</module>
+        <module>jjwt-demo</module>
     </modules>
 
     <properties>

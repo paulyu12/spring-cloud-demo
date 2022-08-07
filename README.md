@@ -28,5 +28,7 @@
     - 拿到 token 后，获取资源 /user/getCurrentUser
   - 获取授权码地址：http://127.0.0.1:18080/oauth/authorize?response_type=code&client_id=client-id-1&redirect_uri=https://www.baidu.com&scope=all
   - 携带授权码获取 token 地址：POST http://127.0.0.1:18080/oauth/token
-    - 请求时 postman Authorization tab 页填写 client_id 和密码，见 postman-auth-client-username-and-password.png
-    - 请求时 postman 表单数据 tab 填写一些授权信息包括授权码，见 postman-oauth2-get-token-form-data.png
+    - 请求时 postman Authorization tab 页填写 client_id 和密码，见 images/postman-auth-client-username-and-password.png
+    - 请求时 postman 表单数据 tab 填写一些授权信息包括授权码，见 images/postman-oauth2-get-token-form-data.png
+- 密码模式工程（复用 spring-security-oauth2-demo）
+  - 携带用户名、密码获取 token 地址：POST http://127.0.0.1:18080/oauth/token
