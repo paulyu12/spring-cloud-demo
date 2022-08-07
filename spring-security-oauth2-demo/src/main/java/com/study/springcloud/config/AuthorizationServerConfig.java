@@ -10,8 +10,13 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 @EnableAuthorizationServer
@@ -37,9 +42,20 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Autowired
     private JwtAccessTokenConverter jwtAccessTokenConverter;
 
+    @Autowired
+    private JwtTokenEnhancer jwtTokenEnhancer;
+
     // 密码模式配置
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
+
+        // 设置 jwt token 增强内容
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        List<TokenEnhancer> delegates = new ArrayList<>();
+        delegates.add(jwtTokenEnhancer);
+        delegates.add(jwtAccessTokenConverter);
+        tokenEnhancerChain.setTokenEnhancers(delegates);
+
         endpoints.authenticationManager(authenticationManager)
                 .userDetailsService(userDetailsService)
 
@@ -48,7 +64,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
                 // oauth2 默认的 access token 转成 jwt tokenStore
                 .tokenStore(tokenStore)
-                .accessTokenConverter(jwtAccessTokenConverter);
+                .accessTokenConverter(jwtAccessTokenConverter)
+
+                .tokenEnhancer(tokenEnhancerChain);
     }
 
     // 授权服务器配置
