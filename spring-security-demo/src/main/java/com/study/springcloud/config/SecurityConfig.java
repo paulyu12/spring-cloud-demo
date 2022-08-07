@@ -95,6 +95,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 自定义登录逻辑
                 .userDetailsService(userDetailsService);
 
+        // 退出登录
+        http.logout()
+                // 自定义退出接口, 即不使用 spring-security 默认的退出 URL: /logout
+                // 一般不要配置这个, 就是用默认的 /logout 作为退出接口即可
+//                .logoutUrl("/user/logout")
+                .logoutUrl("/logout")
+                // 退出登录后跳转的链接, 默认为 /login?logout
+                .logoutSuccessUrl("/login.html");
+
         // 暂时关闭 CSRF 防护
         http.csrf().disable();
     }
