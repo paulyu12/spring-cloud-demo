@@ -44,7 +44,18 @@ public class LoginController {
         return "redirect:error.html";
     }
 
+    /**
+     * 页面跳转:  跳到 thymeleaf 中定义的 demo.html 模板. 定义在 templates 目录下面
+     * @return
+     */
     @GetMapping("/demo")
     public String demo() { return "demo"; }
+
+    /**
+     * 页面跳转: 跳到 thymeleaf 中定义的 login.html 模板. 定义在 templates 目录下面
+     * @return
+     */
+    @GetMapping("/showLogin")
+    public String showLogin() { return "login"; }
 
 }

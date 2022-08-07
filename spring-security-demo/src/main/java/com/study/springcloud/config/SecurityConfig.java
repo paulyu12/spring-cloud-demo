@@ -63,6 +63,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 放行，不需要认证的页面
                 .antMatchers("/login.html").permitAll()
                 .antMatchers("/error.html").permitAll()
+                .antMatchers("/showLogin").permitAll()
 
                 // 基于权威的权限控制
 //                .antMatchers("/main1.html").hasAuthority("admin")
@@ -104,8 +105,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 退出登录后跳转的链接, 默认为 /login?logout
                 .logoutSuccessUrl("/login.html");
 
+        // Spring Security 4 默认开启 CSRF 防护. 默认拦截请求, 进行 CSRF 处理. CSRF 为了保证不是其他第三方网站访问, 要求访问时携带参数名为 随机值的 token. 如果 token 和服务器端 token 匹配则允许访问. 由于访问第三方网站(恶意网站) 时不会携带该 token 字段, 那么即使恶意网站拿到 cookie 也无法以受害用户的身份访问服务器.
         // 暂时关闭 CSRF 防护
-        http.csrf().disable();
+//        http.csrf().disable();
     }
 
     @Bean
