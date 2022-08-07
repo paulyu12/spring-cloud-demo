@@ -19,6 +19,40 @@ public class JjwtApplicationTest {
     @Test
     public void testJwt() {
 
+        // 当前时间
+        long date = System.currentTimeMillis();
+
+        // 失效时间
+        long exp = date + 60 * 1000;
+
+        JwtBuilder jwtBuilder = Jwts.builder()
+                // 唯一 ID
+                .setId("888")
+                // 接受的用户 {“sub": "Rose" }
+                .setSubject("Rose")
+                // 签发时间 {”iat”: "xxxx-xx-xx"}
+                .setIssuedAt(new Date(date))
+                // 签名算法及密钥（盐）
+                .signWith(SignatureAlgorithm.HS256, "salt_secret_xxxx")
+                .setExpiration(new Date(exp));
+                // jwt 包含的标准声明，包括： iss, sub, aud, exp, nbf, iat, jti 等
+
+        String token = jwtBuilder.compact();
+        System.out.println(token);
+
+        System.out.println("==============================");
+
+        String[] split = token.split("\\.");
+        System.out.println(Base64Codec.BASE64.decodeToString(split[0]));
+        System.out.println(Base64Codec.BASE64.decodeToString(split[1]));
+        // 签名部分会乱码
+        System.out.println(Base64Codec.BASE64.decodeToString(split[2]));
+    }
+
+    // 生成 jwt (失效时间)
+    @Test
+    public void testJwtWithExpireTime() {
+
         JwtBuilder jwtBuilder = Jwts.builder()
                 // 唯一 ID
                 .setId("888")
@@ -28,7 +62,7 @@ public class JjwtApplicationTest {
                 .setIssuedAt(new Date())
                 // 签名算法及密钥（盐）
                 .signWith(SignatureAlgorithm.HS256, "salt_secret_xxxx");
-                // jwt 包含的标准声明，包括： iss, sub, aud, exp, nbf, iat, jti 等
+        // jwt 包含的标准声明，包括： iss, sub, aud, exp, nbf, iat, jti 等
 
         String token = jwtBuilder.compact();
         System.out.println(token);
@@ -46,6 +80,24 @@ public class JjwtApplicationTest {
     @Test
     public void testParseToken() {
         String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4ODgiLCJzdWIiOiJSb3NlIiwiaWF0IjoxNjU5ODgyMzk3fQ.iu1SSOio2IOM5sUkWHgNTktVFzqupuMt1ky8GSDvhes";
+
+        // 解析 token，获取 Claims 对象，jwt 中声明的荷载对象
+        Claims claims = (Claims) Jwts.parser()
+                // 密钥，这个密钥要跟 token 签发时的密钥保持一致
+                .setSigningKey("salt_secret_xxxx")
+                .parse(token)
+                .getBody();
+
+        System.out.println("id=" + claims.getId());
+        System.out.println("sub=" + claims.getSubject());
+        System.out.println("iat=" + claims.getIssuedAt());
+
+    }
+
+    // 解析 token(失效时间)
+    @Test
+    public void testParseTokenWithExpire() {
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiI4ODgiLCJzdWIiOiJSb3NlIiwiaWF0IjoxNjU5ODgzMDczLCJleHAiOjE2NTk4ODMxMzN9.-M_pmyvo_GkS4kBOvfMxryN2JmWUAiteo-O7QGbhBbE";
 
         // 解析 token，获取 Claims 对象，jwt 中声明的荷载对象
         Claims claims = (Claims) Jwts.parser()
