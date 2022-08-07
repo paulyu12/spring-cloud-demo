@@ -1,0 +1,133 @@
+{
+	"info": {
+		"_postman_id": "a01ac582-cddc-4fa5-b0b3-f04ed7a0108e",
+		"name": "通用",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13751624"
+	},
+	"item": [
+		{
+			"name": "刷新spring分布式配置",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3344/actuator/bus-refresh/config-client:3355",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3344",
+					"path": [
+						"actuator",
+						"bus-refresh",
+						"config-client:3355"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/oauth2/token",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "112233",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "client-id-1",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text"
+						},
+						{
+							"key": "code",
+							"value": "29IblO",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "client-id-1",
+							"type": "text"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://www.baidu.com",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "all",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:18080/oauth/token",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "18080",
+					"path": [
+						"oauth",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "/user/getCurrentUser",
+			"request": {
+				"method": "GET",
+				"header": []
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3344/actuator/bus-refresh?destination=config-client-3356:3356",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3344/actuator/bus-refresh?destination=config-client-3356:3356",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3344",
+					"path": [
+						"actuator",
+						"bus-refresh"
+					],
+					"query": [
+						{
+							"key": "destination",
+							"value": "config-client-3356:3356"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

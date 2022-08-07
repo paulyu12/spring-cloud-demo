@@ -26,6 +26,7 @@
         <module>cloud-mybatis</module>
         <module>cloud-redis-template</module>
         <module>spring-security-demo</module>
+        <module>spring-security-oauth2-demo</module>
     </modules>
 
     <properties>
