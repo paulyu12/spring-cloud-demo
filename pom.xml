@@ -28,6 +28,7 @@
         <module>spring-security-demo</module>
         <module>spring-security-oauth2-demo</module>
         <module>jjwt-demo</module>
+        <module>spring-security-oauth2-client1</module>
     </modules>
 
     <properties>

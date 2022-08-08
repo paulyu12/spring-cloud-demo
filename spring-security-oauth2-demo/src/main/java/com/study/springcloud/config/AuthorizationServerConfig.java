@@ -10,6 +10,7 @@ import org.springframework.security.oauth2.config.annotation.configurers.ClientD
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancer;
 import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
@@ -81,10 +82,10 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .withClient("client-id-1")
 
                 // 密钥
-                .secret( passwordEncoder.encode("112233") )
+                .secret(passwordEncoder.encode("112233"))
 
                 // 重定向地址
-                .redirectUris("https://www.baidu.com")
+                .redirectUris("http://127.0.0.1:18081/login")
 
                 // 授权范围
                 .scopes("all")
@@ -99,7 +100,18 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
                 .accessTokenValiditySeconds(60)
 
                 // 刷新令牌的失效时间, 1d
-                .refreshTokenValiditySeconds(86400);
+                .refreshTokenValiditySeconds(86400)
+
+                // 自动授权，不会出现一个授权页面
+                .autoApprove(true);
 
     }
+
+    @Override
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+
+        // 获取密钥必须要身份认证。单点登录必须要配置
+        security.tokenKeyAccess("isAuthenticated()");
+    }
+
 }

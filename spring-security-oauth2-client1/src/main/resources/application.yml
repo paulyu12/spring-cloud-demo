@@ -1,0 +1,19 @@
+server:
+  port: 18081
+  servlet:
+    session:
+      cookie:
+        name: OAUTH2-CLIENT-SESSIONID01
+
+oauth2-server-url: http://localhost:18080
+
+security:
+  oauth2:
+    client:
+      client-id: client-id-1
+      client-secret: 112233
+      user-authorization-uri: ${oauth2-server-url}/oauth/authorize  # 获取授权码的地址
+      access-token-uri: ${oauth2-server-url}/oauth/token           # 获取 token 的地址
+    resource:
+      jwt:
+        key-uri: ${oauth2-server-url}/oauth/token_key   # 获取 jwt token 的地址
