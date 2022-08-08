@@ -31,7 +31,7 @@ public class UserController {
      * @return
      */
     @RequestMapping("/getJwt")
-    public Object getCurrentUser(Authentication authentication, HttpServletRequest request) {
+    public Object getJwt(Authentication authentication, HttpServletRequest request) {
 
         // 解析 jwt token
         String header = request.getHeader("Authorization");
